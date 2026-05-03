@@ -1,0 +1,43 @@
+.scroll-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.scroll-cursor-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #F2613F;
+  border-radius: 50%;
+}
+
+.scroll-cursor-svg {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+}
+
+.scroll-cursor-circle-progress {
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Ensure the cursor is hidden on the entire body */
+body {
+  cursor: none !important;
+}
+
+/* Allow default cursor on interactive elements if desired, 
+   but usually for a fully custom experience we keep it custom */
+a, button, [role="button"] {
+  cursor: none !important;
+}

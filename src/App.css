@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Besley&display=swap');
+
+* {
+  overflow: hidden;
+  font-family: 'Besley', sans-serif;
+}
+
+
+/* App.css */
+
+.custom-cursor {
+  cursor: none;
+  /* Hide the default cursor */
+  position: relative;
+}
+
+
+.three-container {
+
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.project_pinned {
+  background-color: #0C0C0C;
+
+  width: 100%;
+}
+
+/* img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+section {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.project_sticky-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}
+
+.project_sticky-header h1 {
+  font-size: 20vw;
+  font-weight: lighter;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+  text-align: center;
+}
+
+.project_card {
+
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  width: 45%;
+  height: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  border-radius: 1em;
+  will-change: transform;
+  overflow: hidden;
+}
+
+#card-1 {
+  background: url(./beautiful-anime-character-cartoon-scene.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  border: 2px solid rgba(236, 183, 76, 0.35);
+}
+
+#card-2 {
+  background: url(./anime-moon-landscape.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  border: 2px solid rgba(125, 216, 205, 0.35);
+}
+
+#card-3 {
+  background: url(./633f32390f0dc.png) no-repeat 50% 50%;
+  background-size: cover;
+  border: 2px solid rgba(224, 255, 87, 0.35);
+}
+
+#card-4 {
+  background: url(./wallpaperflare.com_wallpaper\ \(7\).jpg) no-repeat 50% 50%;
+  background-size: cover;
+  border: 2px solid rgba(125, 216, 205, 0.35);
+}
+
+.project_card-phase {
+
+  position: absolute;
+  top: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.125em 0.25em;
+  border-radius: 0.25em;
+  color: #000;
+}
+
+.project_card-phase p {
+  font-size: 24px;
+}
+
+#card-1 .project_card-phase {
+  background-color: #ecb74c;
+}
+
+#card-2 .project_card-phase {
+  background-color: #7dd8cd;
+}
+
+#card-3 .project_card-phase {
+  background-color: #e0ff57;
+}
+
+#card-4 .project_card-phase {
+  background-color: #7dd8cd;
+}
+
+.project_card-title {
+  text-align: center;
+}
+
+.project_card-title {
+  font-size: 36px;
+  background-color: #fff;
+}
+
+.project_card-title h1 {
+
+  font-size: 80px;
+  font-weight: lighter;
+  line-height: 90%;
+}
+
+.project_card-title h1 span {
+  color: transparent;
+  -webkit-text-stroke: 1.25px #fff;
+}
+
+.project_progress-bar {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  background-color: #fff;
+}
+
+.project_progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(0, 0, 0, 1) 100%);
+}
+
+.project_progress {
+  width: 100%;
+  height: 0%;
+  background-color: #353431;
+}
+
+.project_indicess {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4em;
+  opacity: 0;
+}
+
+.project_index {
+  text-align: right;
+  opacity: 0.25;
+}
+
+.project_index p {
+  text-decoration: line-through;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.project_index p:nth-child(2) {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+}
+
+.project_index p:nth-child(3) {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.125rem;
+}
+
+#index-1 p {
+  color: #ecb74c;
+}
+
+#index-2 p {
+  color: #e0ff57;
+}
+
+#index-4 p {
+  color: #7dd8cd;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
