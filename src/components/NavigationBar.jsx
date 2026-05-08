@@ -120,13 +120,13 @@ const NavigationBar = () => {
   return (
     <div style={{ backgroundColor: '#0C0C0C' }}>
       {/* Primary Navigation */}
-      <nav ref={primaryNavRef} className="mx-25 py-4 px-6 ">
-        <ul className="flex space-x-8 justify-end">
+      <nav ref={primaryNavRef} className="w-full py-4 px-4 sm:px-8 md:px-16 lg:px-24">
+        <ul className="flex flex-wrap justify-center md:justify-end gap-4 sm:gap-6 md:gap-8">
           {['About', 'Experience', 'Project', 'Contact'].map((item, index) => (
             <li
               key={item}
               ref={(el) => (navItemsRef.current[index] = el)}
-              className="group flex flex-col items-center cursor-pointer"
+              className="group flex flex-col items-center cursor-pointer text-sm sm:text-base"
               onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}
             >
               <span className="relative inline-block" style={{ color: '#F2613F' }}>
@@ -142,21 +142,21 @@ const NavigationBar = () => {
       {/* Sticky Navigation */}
       <nav
         ref={stickyNavRef}
-        className="fixed top-0 left-0 right-0 max-w-xl mt-3 mx-auto p-3 rounded-2xl  z-50 shadow-lg"
+        className="fixed top-0 left-1/2 -translate-x-1/2 w-[95%] sm:w-[90%] md:max-w-xl mt-3 p-2 md:p-3 rounded-2xl z-50 shadow-lg"
         style={{ opacity: 0, transform: 'translateY(-20px)', backgroundColor: '#481E14', color: '#F2613F' }}
       >
-        <ul className="flex space-x-8 justify-center">
+        <ul className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-8">
           {['About', 'Experience', 'Project', 'Contact'].map((item) => (
             <li
               key={`${item}-sticky`}
-              className="group flex flex-col items-center cursor-pointer px-4 py-1 rounded-lg hover:bg-rgb(72, 30, 20) transition-colors"
+              className="group flex flex-col items-center cursor-pointer px-2 sm:px-4 py-1 rounded-lg hover:bg-rgb(72, 30, 20) transition-colors text-xs sm:text-sm md:text-base"
               onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}
             >
               <span className="relative inline-block" style={{ backgroundColor: '#481E14' }}>
                 {item}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 ease-out"></span>
               </span>
-            </li>
+            </li> 
           ))}
         </ul>
       </nav>

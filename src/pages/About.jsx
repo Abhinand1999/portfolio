@@ -12,12 +12,12 @@ const About = () => {
       {/* Main Hero Section */}
       <div className="relative w-full h-screen flex flex-col items-center justify-center text-center px-4">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full select-none pointer-events-none overflow-hidden">
-           <h1 className="text-[120px] md:text-[250px] font-black leading-none opacity-10 tracking-tighter text-transparent" style={{ WebkitTextStroke: '2px #F2613F' }}>
+           <h1 className="text-[60px] sm:text-[120px] md:text-[250px] font-black leading-none opacity-10 tracking-tighter text-transparent" style={{ WebkitTextStroke: '2px #F2613F' }}>
             BEYOND
           </h1>
         </div>
         
-        <h1 className="relative z-10 text-[80px] md:text-[180px] font-bold tracking-widest drop-shadow-[0_0_20px_rgba(242,97,63,0.3)] leading-none text-white">
+        <h1 className="relative z-10 text-[30px] sm:text-[80px] md:text-[180px] font-bold tracking-widest drop-shadow-[0_0_20px_rgba(242,97,63,0.3)] leading-none text-white">
           ABOUT
         </h1>
         <p className="relative z-10 text-[#F2613F] font-mono tracking-[0.5em] text-xs md:text-sm uppercase mt-4 opacity-80">

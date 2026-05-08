@@ -3,7 +3,7 @@ import React from 'react'
 const TarotCard = ({ numeral, title, role, company, content, period, transformClass, zIndexClass }) => {
     return (
         <div
-            className={`group absolute top-1/2 left-1/2 -ml-[11rem] -mt-[16rem] w-[22rem] h-[32rem] flex-shrink-0 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:!rotate-0 hover:!translate-x-0 hover:!-translate-y-8 hover:!z-50 hover:scale-[1.08] rounded-2xl overflow-hidden bg-[#050001] shadow-[0_0_20px_rgba(242,97,63,0.1)] hover:shadow-[0_0_60px_rgba(242,97,63,0.3)] ${transformClass} ${zIndexClass}`}
+            className={`group relative md:absolute top-auto md:top-1/2 left-auto md:left-1/2 md:-ml-[11rem] md:-mt-[16rem] w-[20rem] sm:w-[22rem] h-[28rem] sm:h-[32rem] flex-shrink-0 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:!rotate-0 hover:!translate-x-0 hover:!-translate-y-4 md:hover:!-translate-y-8 hover:!z-50 hover:scale-[1.02] md:hover:scale-[1.08] rounded-2xl overflow-hidden bg-[#050001] shadow-[0_0_20px_rgba(242,97,63,0.1)] hover:shadow-[0_0_60px_rgba(242,97,63,0.3)] ${transformClass} ${zIndexClass}`}
             style={{ border: '1px solid rgba(242, 97, 63, 0.4)' }}
         >
             {/* Geometric Card Face (SVG) */}
@@ -82,7 +82,7 @@ const cards = [
         company: 'Apps Team Technologies',
         content: 'Designed and deployed robust server-side architectures, optimizing RESTful API endpoints and improving database transaction speeds through advanced indexing.',
         period: 'JUL — SEP 2023',
-        transformClass: '-rotate-[8deg] -translate-x-[16rem] translate-y-6',
+        transformClass: 'md:-rotate-[8deg] md:-translate-x-[16rem] md:translate-y-6',
         zIndexClass: 'z-10'
     },
     {
@@ -102,20 +102,20 @@ const cards = [
         company: 'Inciem',
         content: 'Working on complex enterprise applications, maintaining atomic design consistency and building real-time notification systems.',
         period: 'AUG 2025 — PRESENT',
-        transformClass: 'rotate-[8deg] translate-x-[16rem] translate-y-6',
+        transformClass: 'md:rotate-[8deg] md:translate-x-[16rem] md:translate-y-6',
         zIndexClass: 'z-10'
     }
 ];
 
     return (
-        <div className="relative min-h-screen bg-[#0C0C0C] flex flex-col justify-center items-center py-32 md:py-48 overflow-hidden">
+        <div className="relative min-h-screen bg-[#0C0C0C] flex flex-col justify-center items-center py-20 md:py-48 overflow-x-hidden">
             {/* Background Atmosphere */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[120vh] pointer-events-none z-0">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F2613F] opacity-[0.04] blur-[180px] rounded-full" />
             </div>
 
             {/* Intricate Frame for Card Collection */}
-            <div className="relative z-10 w-full max-w-6xl h-[40rem] flex items-center justify-center scale-90 md:scale-100">
+            <div className="relative z-10 w-full max-w-6xl md:h-[40rem] flex flex-col md:block items-center justify-center gap-10 md:gap-0 scale-90 sm:scale-100 mt-10 md:mt-0">
                 {cards.map((card, index) => (
                     <TarotCard key={index} {...card} />
                 ))}

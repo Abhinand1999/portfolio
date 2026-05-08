@@ -81,23 +81,23 @@ const WaterPage = () => {
       const { width, height } = getSize();
       canvas.width = width;
       canvas.height = height;
-      
+
       ctx.fillStyle = "#0C0C0C";
       ctx.fillRect(0, 0, width, height);
-      
+
       // Determine responsive size similar to md:text-[250px] text-[100px]
       const isMobile = window.innerWidth < 768;
       const fontSize = isMobile ? 60 : 150; // Reduced size
-      
+
       ctx.font = `900 ${Math.round(fontSize * DPR)}px sans-serif`; // max font weight (900)
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      
+
       // tracking-tighter equivalent, if supported
       if ('letterSpacing' in ctx) {
-        ctx.letterSpacing = "-0.05em"; 
+        ctx.letterSpacing = "-0.05em";
       }
-      
+
       // No fill, faint neon red outline
       ctx.strokeStyle = "rgba(242, 97, 63, 0.15)"; // '#F2613F' with slightly boosted opacity for the bold effect
       ctx.lineWidth = 5 * DPR; // Increased stroke width for a bolder appearance

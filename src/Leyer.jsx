@@ -14,7 +14,7 @@ const Leyer = () => {
   return (
     <div>
       <NavigationBar />
-      <Suspense fallback={<div>Loading WaterPage...</div>}>
+      <Suspense>
         <WaterPage />
       </Suspense>
       <About />
