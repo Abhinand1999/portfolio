@@ -22,6 +22,8 @@ const WaterPage = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.innerHTML = "";
     containerRef.current.appendChild(renderer.domElement);
+    // Allow vertical touch scrolling through the canvas
+    renderer.domElement.style.touchAction = "pan-y";
 
     const scene = new THREE.Scene();
     const simScene = new THREE.Scene();
@@ -85,11 +87,18 @@ const WaterPage = () => {
       ctx.fillStyle = "#0C0C0C";
       ctx.fillRect(0, 0, width, height);
 
-      // Determine responsive size similar to md:text-[250px] text-[100px]
-      const isMobile = window.innerWidth < 768;
-      const fontSize = isMobile ? 60 : 150; // Reduced size
+      // Responsive font size: smaller on mobile, larger on desktop
+      const screenWidth = window.innerWidth;
+      let fontSize;
+      if (screenWidth < 480) {
+        fontSize = 40; // Small phones
+      } else if (screenWidth < 768) {
+        fontSize = 55; // Larger phones / small tablets
+      } else {
+        fontSize = 150; // Desktop
+      }
 
-      ctx.font = `900 ${Math.round(fontSize * DPR)}px sans-serif`; // max font weight (900)
+      ctx.font = `900 ${Math.round(fontSize * DPR)}px sans-serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
@@ -99,8 +108,8 @@ const WaterPage = () => {
       }
 
       // No fill, faint neon red outline
-      ctx.strokeStyle = "rgba(242, 97, 63, 0.15)"; // '#F2613F' with slightly boosted opacity for the bold effect
-      ctx.lineWidth = 5 * DPR; // Increased stroke width for a bolder appearance
+      ctx.strokeStyle = "rgba(242, 97, 63, 0.15)";
+      ctx.lineWidth = 5 * DPR;
       ctx.strokeText("ABHINAND", width / 2, height / 2);
     };
 
@@ -121,25 +130,53 @@ const WaterPage = () => {
       textTexture.needsUpdate = true;
     };
 
-    const handleMouseMove = (e) => {
+    // Unified function to update mouse position from an event
+    const updateMouseFromEvent = (clientX, clientY) => {
       const rect = renderer.domElement.getBoundingClientRect();
-      const x = (e.clientX - rect.left) * DPR;
-      const y = (e.clientY - rect.top) * DPR;
+      const x = (clientX - rect.left) * DPR;
+      const y = (clientY - rect.top) * DPR;
 
-      const width = rect.width * DPR;
-      const height = rect.height * DPR;
+      const w = rect.width * DPR;
+      const h = rect.height * DPR;
 
-      mouse.x = x / width;
-      mouse.y = 1.0 - y / height;
+      mouse.x = x / w;
+      mouse.y = 1.0 - y / h;
+    };
+
+    const handleMouseMove = (e) => {
+      updateMouseFromEvent(e.clientX, e.clientY);
     };
 
     const handleMouseLeave = () => {
       mouse.set(-1, -1);
     };
 
+    // Touch event handlers for mobile water effect
+    const handleTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        updateMouseFromEvent(touch.clientX, touch.clientY);
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        updateMouseFromEvent(touch.clientX, touch.clientY);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouse.set(-1, -1);
+    };
+
     window.addEventListener("resize", handleResize);
     renderer.domElement.addEventListener("mousemove", handleMouseMove);
     renderer.domElement.addEventListener("mouseleave", handleMouseLeave);
+    // Touch events - passive so they don't block scrolling
+    renderer.domElement.addEventListener("touchstart", handleTouchStart, { passive: true });
+    renderer.domElement.addEventListener("touchmove", handleTouchMove, { passive: true });
+    renderer.domElement.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     const animate = () => {
       simMaterial.uniforms.frame.value = frame++;
@@ -166,6 +203,9 @@ const WaterPage = () => {
       window.removeEventListener("resize", handleResize);
       renderer.domElement.removeEventListener("mousemove", handleMouseMove);
       renderer.domElement.removeEventListener("mouseleave", handleMouseLeave);
+      renderer.domElement.removeEventListener("touchstart", handleTouchStart);
+      renderer.domElement.removeEventListener("touchmove", handleTouchMove);
+      renderer.domElement.removeEventListener("touchend", handleTouchEnd);
       renderer.dispose();
       rtA.dispose();
       rtB.dispose();

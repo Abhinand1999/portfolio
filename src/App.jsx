@@ -20,7 +20,10 @@ function App() {
       window.history.scrollRestoration = 'manual';
     }
 
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      touchMultiplier: 2, // Better touch scrolling on mobile
+      smoothTouch: false, // Let native touch scrolling handle mobile (more reliable)
+    });
     
     const lenisRaf = (t) => {
       lenis.raf(t * 1000);

@@ -1,26 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Besley&display=swap');
 
 * {
-  overflow: hidden;
   font-family: 'Besley', sans-serif;
 }
 
+html, body {
+  overflow-x: hidden;
+}
 
 /* App.css */
 
 .custom-cursor {
-  cursor: none;
-  /* Hide the default cursor */
   position: relative;
+}
+
+/* Custom cursor only on devices with a fine pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor {
+    cursor: none;
+  }
 }
 
 
 .three-container {
-
   position: relative;
   top: 0;
   left: 0;
   z-index: 1;
+  touch-action: pan-y; /* Allow vertical scrolling through the canvas on touch devices */
 }
 
 .project_pinned {
