@@ -40,7 +40,7 @@ function App() {
   }, []);
 
   return (
-    <div className="custom-cursor">
+    <div className="custom-cursor bg-[#0C0C0C] min-h-screen">
       {loading && <LoadingScreen1 onComplete={() => setLoading(false)} />}
       {/* {loading && <LoadingScreen onComplete={() => setLoading(false)} />} */}
       <ScrollCursor />

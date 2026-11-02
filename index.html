@@ -1,15 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-color: #0C0C0C;">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/image.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0C0C0C" />
+  <meta name="color-scheme" content="dark" />
   <title>Abhinand</title>
+  <style>
+    html, body, #root {
+      background-color: #0C0C0C !important;
+      color-scheme: dark;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px;
+      height: 0px;
+    }
+  </style>
 </head>
 
-<body>
-  <div id="root"></div>
+<body style="background-color: #0C0C0C;">
+  <div id="root" style="background-color: #0C0C0C; min-height: 100vh;"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

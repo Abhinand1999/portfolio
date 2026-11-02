@@ -25,12 +25,12 @@ const Leyer = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-[#0C0C0C] min-h-screen">
       <NavigationBar />
       {isMobile ? (
         <MobileHome />
       ) : (
-        <Suspense>
+        <Suspense fallback={<div className="w-full h-screen bg-[#0C0C0C]" />}>
           <WaterPage />
         </Suspense>
       )}
