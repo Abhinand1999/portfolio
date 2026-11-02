@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import NavigationBar from "./components/NavigationBar";
 import Home from "./pages/Home";
 import Scrolle from "./components/Scrolle";
@@ -7,16 +7,33 @@ import Contact from "./pages/Contact";
 import Project from "./pages/Project/Project";
 import CardContainer from "./components/CardContainer.jsx";
 import Experience from './pages/Experience.jsx';
+import MobileHome from './pages/Home/MobileHome';
 
 const WaterPage = lazy(() => import("./pages/Home/WaterPage"));
 
 const Leyer = () => {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div>
       <NavigationBar />
-      <Suspense>
-        <WaterPage />
-      </Suspense>
+      {isMobile ? (
+        <MobileHome />
+      ) : (
+        <Suspense>
+          <WaterPage />
+        </Suspense>
+      )}
       <About />
       {/* <Home /> */}
       <Experience />
@@ -24,7 +41,7 @@ const Leyer = () => {
       <CardContainer />
       <Contact />
     </div>
-  )
-}
+  );
+};
 
 export default Leyer;
