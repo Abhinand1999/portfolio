@@ -171,7 +171,7 @@ const NavigationBar = () => {
   return (
     <div style={{ backgroundColor: '#0C0C0C' }}>
       {/* Primary Navigation - Desktop */}
-      <nav ref={primaryNavRef} className="w-full py-4 px-4 sm:px-8 md:px-16 lg:px-24">
+      <nav ref={primaryNavRef} className="hidden md:block w-full py-4 px-4 sm:px-8 md:px-16 lg:px-24">
         <ul className="hidden md:flex flex-wrap justify-end gap-6 md:gap-8">
           {navItems.map((item, index) => (
             <li

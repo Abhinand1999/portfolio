@@ -22,8 +22,9 @@ const WaterPage = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.innerHTML = "";
     containerRef.current.appendChild(renderer.domElement);
-    // Allow vertical touch scrolling through the canvas
+    // Allow vertical touch scrolling through the canvas and remove inline baseline gap
     renderer.domElement.style.touchAction = "pan-y";
+    renderer.domElement.style.display = "block";
 
     const scene = new THREE.Scene();
     const simScene = new THREE.Scene();
@@ -87,30 +88,47 @@ const WaterPage = () => {
       ctx.fillStyle = "#0C0C0C";
       ctx.fillRect(0, 0, width, height);
 
-      // Responsive font size: smaller on mobile, larger on desktop
-      const screenWidth = window.innerWidth;
-      let fontSize;
-      if (screenWidth < 480) {
-        fontSize = 40; // Small phones
-      } else if (screenWidth < 768) {
-        fontSize = 55; // Larger phones / small tablets
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        // Mobile-specific layout:
+        // 1. Dynamic font size tailored to phone screen width (~78-82% width)
+        const mobileFontSize = Math.min(Math.max(window.innerWidth * 0.185, 68), 90);
+        
+        // 2. Weight 700 with 2 * DPR stroke for crisp, clean neon contours (eliminates the muddy/overly bold look)
+        ctx.font = `700 ${Math.round(mobileFontSize * DPR)}px sans-serif`;
+        ctx.textAlign = "center";
+        if ('letterSpacing' in ctx) {
+          ctx.letterSpacing = "0px";
+        }
+        ctx.strokeStyle = "rgba(242, 97, 63, 0.2)";
+        ctx.lineWidth = 2 * DPR;
+
+        // 3. True visual centering using exact glyph bounding box metrics
+        const metrics = ctx.measureText("ABHINAND");
+        if (metrics.actualBoundingBoxAscent !== undefined && metrics.actualBoundingBoxDescent !== undefined) {
+          ctx.textBaseline = "alphabetic";
+          const textY = height / 2 + (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
+          ctx.strokeText("ABHINAND", width / 2, textY);
+        } else {
+          ctx.textBaseline = "middle";
+          ctx.strokeText("ABHINAND", width / 2, height / 2);
+        }
       } else {
-        fontSize = 150; // Desktop
+        // Desktop view: 100% original & untouched
+        const fontSize = 150;
+        ctx.font = `900 ${Math.round(fontSize * DPR)}px sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        if ('letterSpacing' in ctx) {
+          ctx.letterSpacing = "-0.05em";
+        }
+
+        ctx.strokeStyle = "rgba(242, 97, 63, 0.15)";
+        ctx.lineWidth = 5 * DPR;
+        ctx.strokeText("ABHINAND", width / 2, height / 2);
       }
-
-      ctx.font = `900 ${Math.round(fontSize * DPR)}px sans-serif`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      // tracking-tighter equivalent, if supported
-      if ('letterSpacing' in ctx) {
-        ctx.letterSpacing = "-0.05em";
-      }
-
-      // No fill, faint neon red outline
-      ctx.strokeStyle = "rgba(242, 97, 63, 0.15)";
-      ctx.lineWidth = 5 * DPR;
-      ctx.strokeText("ABHINAND", width / 2, height / 2);
     };
 
     drawTextTexture();
