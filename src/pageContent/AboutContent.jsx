@@ -36,7 +36,7 @@ const AboutContent = () => {
           <div className="relative z-10 space-y-8">
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm shadow-[0_0_40px_rgba(0,0,0,0.5)]">
                <p className="text-white/80 text-lg md:text-xl leading-relaxed font-light first-letter:text-5xl first-letter:font-bold first-letter:text-[#F2613F] first-letter:mr-3 first-letter:float-left">
-                I am a Full Stack Developer with a deep-seated passion for architectural integrity and user-centric design. Over the last 1.7 years, I have navigated the complexities of the digital realm, breathing life into responsive web applications and engineering scalable backend systems.
+                I am a Full Stack Developer with a deep-seated passion for architectural integrity and user-centric design. Over the last 1.7 + years, I have navigated the complexities of the digital realm, breathing life into responsive web applications and engineering scalable backend systems.
               </p>
             </div>
             
